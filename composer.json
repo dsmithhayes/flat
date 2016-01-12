@@ -1,0 +1,24 @@
+{
+    "name": "dsmithhayes/flat",
+    "description": "A flat file blogging system built with Slim3.",
+    "type": "Application",
+    "require": {
+        "slim/slim": "^3.1",
+        "cebe/markdown": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flat\\": "src/"
+        }
+    },
+    "license": "BSD 3.0",
+    "authors": [
+        {
+            "name": "Dave Smith-Hayes",
+            "email": "dsmithhayes@gmail.com"
+        }
+    ]
+}
