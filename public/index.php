@@ -24,6 +24,13 @@ $flat->get("/{title}", function (Request $req, Response $res, $args) {
 });
 
 /**
+ * An index of all the raw markdown files
+ */
+$flat->get("/raw", function (Request $req, Response $res, $args) {
+
+});
+
+/**
  * This is for the raw markdown of the blog post.
  */
 $flat->get("/raw/{title}", function (Request $req, Response $res, $args) {
