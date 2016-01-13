@@ -12,7 +12,7 @@ class Post
     /**
      * @var resource An open file handle
      */
-    protected $handle;
+    private $handle;
 
     /**
      * @param string $path The full file path of the markdown file of the post
@@ -21,6 +21,8 @@ class Post
     {
         if (!file_exists($path)) {
             throw new \Exception("'" . $path . "' doesn't exists.");
+        }
+
         $this->path = $path;
         $this->handle = fopen($path, 'r+');
     }
