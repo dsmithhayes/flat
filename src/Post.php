@@ -24,7 +24,7 @@ class Post
      * @var bool
      *      True if the post is to be published publically
      */
-    private $published = false;
+    private $published = true;
 
     /**
      * @param \Flat\PostFile $postFile
@@ -35,7 +35,7 @@ class Post
     public function __construct(PostFile $postFile, Parser $parser)
     {
         if ($postFile instanceof DraftFile) {
-            $published = true;
+            $published = false;
         }
 
         $this->postFile = $postFile;
@@ -50,7 +50,7 @@ class Post
      */
     public function html()
     {
-
+        return $this->parser->parse($ths->postFile->read());
     }
 
     /**
@@ -61,6 +61,24 @@ class Post
      */
     public function raw()
     {
+        return $this->postFile->read();
+    }
 
+    /**
+     * @return bool
+     *      True if the post is a draft
+     */
+    public function isDraft()
+    {
+        return !$this->published;
+    }
+
+    /**
+     * @return bool
+     *      True if the post is to be published
+     */
+    public function isPublished()
+    {
+        return $this->published;
     }
 }
