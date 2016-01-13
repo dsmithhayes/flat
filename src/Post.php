@@ -46,7 +46,8 @@ class Post
      * This will effectively render all of the markdown in the file to its
      * appropriate HTML
      *
-     * @return string The rendered HTML of the PostFile content
+     * @return string 
+     *      The rendered HTML of the PostFile content
      */
     public function html()
     {
@@ -57,7 +58,8 @@ class Post
      * Some times all you want to look at is the raw markdown. So this method
      * will let you see it
      *
-     * @return string The raw markdown of the post
+     * @return string 
+     *      The raw markdown of the post
      */
     public function raw()
     {

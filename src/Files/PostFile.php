@@ -8,12 +8,14 @@ namespace Flat\Files;
 class PostFile
 {
     /**
-     * @var string The full path in the filesystem of the markdown file
+     * @var string 
+     *      The full path in the filesystem of the markdown file
      */
     protected $path;
 
     /**
-     * @var resource The open file resource of the markdown file
+     * @var resource 
+     *      The open file resource of the markdown file
      */
     private $handle;
 
@@ -58,9 +60,7 @@ class PostFile
      */
     public function read($buffer = 0)
     {
-        if ($buffer === 0) {
-            $buffer = filesize($this->path);
-        }
+        $buffer = (!$buffer) ? filesize($this->path) : $buffer;
 
         return fread($this->handle, $buffer);
     }
