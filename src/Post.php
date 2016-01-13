@@ -4,6 +4,7 @@ namespace Flat;
 
 use cebe\markdown\Parser;
 use Flat\Files\PostFile;
+use Flat\Files\DraftFile;
 
 class Post
 {
@@ -23,7 +24,7 @@ class Post
      * @var bool
      *      True if the post is to be published publically
      */
-    protected $published;
+    private $published = false;
 
     /**
      * @param \Flat\PostFile $postFile
@@ -33,6 +34,10 @@ class Post
      */
     public function __construct(PostFile $postFile, Parser $parser)
     {
+        if ($postFile instanceof DraftFile) {
+            $published = true;
+        }
+
         $this->postFile = $postFile;
         $this->parser = $parser;
     }
