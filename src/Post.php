@@ -2,6 +2,8 @@
 
 namespace Flat;
 
+use cebe\markdown\Markdown;
+
 class Post
 {
     /**
@@ -24,7 +26,10 @@ class Post
         }
 
         $this->path = $path;
-        $this->handle = fopen($path, 'r+');
+
+        if (!($this->handle = fopen($path, 'r+'))) {
+            throw new \Exception("Error opening '" . $this-path . "'");
+        }
     }
 
     /**
