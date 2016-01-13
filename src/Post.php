@@ -22,7 +22,7 @@ class Post
      * @var \cebe\markdown\Parser
      *      An instance of the markdown parser
      */
-    protected $parser;
+    public $parser;
 
     /**
      * @param string $path
@@ -49,5 +49,23 @@ class Post
     public function __destruct()
     {
         fclose($this->handle);
+    }
+
+    /**
+     * This will effectively render all of the markdown in the file to its
+     * appropriate HTML.
+     */
+    public function html()
+    {
+
+    }
+
+    /**
+     * Some times all you want to look at is the raw markdown. So this method
+     * will let you see it.
+     */
+    public function raw()
+    {
+
     }
 }
