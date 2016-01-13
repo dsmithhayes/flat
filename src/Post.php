@@ -51,7 +51,22 @@ class Post
      */
     public function html()
     {
-        return $this->parser->parse($ths->postFile->read());
+        return $this->parser->parse($this->raw());
+    }
+
+    /**
+     * Parses inline markdown to HTML.
+     *
+     * @param string
+     *      A string of markdown to parse, uses the internal buffer by 
+     *      default
+     * @return string
+     *      The rendered HTML
+     */
+    public function inline($string = null)
+    {
+        $string = (!$string) ? $this->raw() : $string;
+        return $this->parse->parseParagraph($string);
     }
 
     /**
