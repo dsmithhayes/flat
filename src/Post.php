@@ -3,20 +3,15 @@
 namespace Flat;
 
 use cebe\markdown\Parser;
+use Flat\PostFile;
 
 class Post
 {
     /**
-     * @var string
-     *      The full path in the filesystem of the markdown post
+     * @var \Flat\PostFile
+     *      And instance of a PostFile object
      */
-    protected $path;
-
-    /**
-     * @var resource
-     *      An open file handle
-     */
-    private $handle;
+    protected $postFile
 
     /**
      * @var \cebe\markdown\Parser
@@ -25,35 +20,22 @@ class Post
     public $parser;
 
     /**
-     * @param string $path
-     *      The full file path of the markdown file of the post
+     * @param \Flat\PostFile $postFile
+     *      An instance of the PostFile object
      * @param \cebe\markdown\Parser $parser
      *      An instance of the cebe markdown Parser
      */
-    public function __construct(string $path, Parser $parser)
+    public function __construct(PostFile $postFile, Parser $parser)
     {
-        if (!file_exists($path)) {
-            throw new \Exception("'" . $path . "' doesn't exists.");
-        }
-
-        $this->path = $path;
-
-        if (!($this->handle = fopen($path, 'r+'))) {
-            throw new \Exception("Error opening '" . $this-path . "'");
-        }
-    }
-
-    /**
-     * Enforce the handle to close when the object deconstructs.
-     */
-    public function __destruct()
-    {
-        fclose($this->handle);
+        $this->postFile = $postFile;
+        $this->parser = $parser;
     }
 
     /**
      * This will effectively render all of the markdown in the file to its
      * appropriate HTML.
+     *
+     * @return string The rendered HTML of the PostFile content
      */
     public function html()
     {
@@ -63,6 +45,8 @@ class Post
     /**
      * Some times all you want to look at is the raw markdown. So this method
      * will let you see it.
+     *
+     * @return string The raw markdown of the post.
      */
     public function raw()
     {
