@@ -20,6 +20,12 @@ class Post
     public $parser;
 
     /**
+     * @var bool
+     *      True if the post is to be published publically
+     */
+    protected $published;
+
+    /**
      * @param \Flat\PostFile $postFile
      *      An instance of the PostFile object
      * @param \cebe\markdown\Parser $parser
@@ -33,7 +39,7 @@ class Post
 
     /**
      * This will effectively render all of the markdown in the file to its
-     * appropriate HTML.
+     * appropriate HTML
      *
      * @return string The rendered HTML of the PostFile content
      */
@@ -44,9 +50,9 @@ class Post
 
     /**
      * Some times all you want to look at is the raw markdown. So this method
-     * will let you see it.
+     * will let you see it
      *
-     * @return string The raw markdown of the post.
+     * @return string The raw markdown of the post
      */
     public function raw()
     {

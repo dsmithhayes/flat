@@ -41,9 +41,9 @@ class PostFile
     }
 
     /**
-     * Make sure you close the file resource when the object destroys itself.
+     * Make sure you close the file resource when the object destroys itself
      *
-     * RIP.
+     * RIP
      */
     public function __destruct()
     {
@@ -51,7 +51,7 @@ class PostFile
     }
 
     /**
-     * Reads and returns the contents of the file resource.
+     * Reads and returns the contents of the file resource
      *
      * @param int $buffer
      *      The buffer size of the read action

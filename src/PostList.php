@@ -24,7 +24,7 @@ class PostList extends LinkedList
     }
 
     /**
-     * Overrides the parent method by enforcing a type on the parameter.
+     * Overrides the parent method by enforcing a type on the parameter
      *
      * @param \Flat\Post
      *      An instance of the Post object
