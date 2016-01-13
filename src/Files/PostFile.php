@@ -33,7 +33,9 @@ class PostFile
 
         $this->path = $path;
 
-        if (!($this->handle = fopen($path, 'r+'))) {
+        $this->handle = fopen($path, 'r+');
+
+        if (!$this->handle) {
             throw new \Exception("Error opening '" . $this-path . "'");
         }
     }
@@ -45,7 +47,7 @@ class PostFile
      */
     public function __destruct()
     {
-        fclose($handle);
+        fclose($this->handle);
     }
 
     /**

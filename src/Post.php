@@ -3,7 +3,7 @@
 namespace Flat;
 
 use cebe\markdown\Parser;
-use Flat\PostFile;
+use Flat\Files\PostFile;
 
 class Post
 {
@@ -11,7 +11,7 @@ class Post
      * @var \Flat\PostFile
      *      And instance of a PostFile object
      */
-    protected $postFile
+    protected $postFile;
 
     /**
      * @var \cebe\markdown\Parser
