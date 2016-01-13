@@ -14,10 +14,21 @@ class DraftFile extends PostFile
      */
     public function __construct($path)
     {
-        if (!preg_match('\.draft', $path)) {
+        if (!self::isDraft($path)) {
             throw new \Exception("'" . $path . "' is not a valid draft.");
         }
 
         parent::__construct($path);
+    }
+
+    /**
+     * @param string $path
+     *      The full path of the file
+     * @return bool
+     *      True if the post is a draft
+     */
+    public static function isDraft($path)
+    {
+        return preg_match('\.draft', $path);
     }
 }
