@@ -15,7 +15,9 @@ class DraftFile extends PostFile
     public function __construct($path)
     {
         if (!self::isDraft($path)) {
-            throw new \Exception("'" . $path . "' is not a valid draft.");
+            throw new \InvalidArgumentException(
+                "'" . $path . "' is not a valid draft."
+            );
         }
 
         parent::__construct($path);
@@ -29,6 +31,6 @@ class DraftFile extends PostFile
      */
     public static function isDraft($path)
     {
-        return preg_match('\.draft', $path);
+        return preg_match('/\.draft/', $path);
     }
 }
