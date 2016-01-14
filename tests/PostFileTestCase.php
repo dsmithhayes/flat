@@ -5,9 +5,26 @@ use Flat\Files\DraftFile;
 
 class PostFileTestCase extends PHPUnit_Framework_TestCase
 {
-    public function testPostFile()
+    protected $testFile = __DIR__ . '/../md/test.md';
+
+    public function testPostFileRead()
     {
-        $postFile = new PostFile(__DIR__ . '/../md/test.md');
-        $this->assertEquals(file_get_contents(__DIR__ . '/../md/test.md'), $postFile->read());
+        $postFile = new PostFile($this->testFile);
+        $this->assertEquals(
+            file_get_contents($this->testFile),
+            $postFile->read()
+        );
+
+        return $postFile;
+    }
+
+    /**
+     * @depends testPostFileRead
+     */
+    public function testPostFileReadBuffer($postFile)
+    {
+        $this->assertEquals('# Test P', $postFile->read(8));
+
+        return $postFile;
     }
 }

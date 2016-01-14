@@ -5,16 +5,16 @@ namespace Flat\Files;
 /**
  * This object represents an open file resource of the markdown file.
  */
-class PostFile
+class PostFile implements \Serializable
 {
     /**
-     * @var string 
+     * @var string
      *      The full path in the filesystem of the markdown file
      */
     protected $path;
 
     /**
-     * @var resource 
+     * @var resource
      *      The open file resource of the markdown file
      */
     private $handle;
@@ -22,7 +22,7 @@ class PostFile
     /**
      * @param string $path
      *      The full file path of the markdown file.
-     * @throws \Exception
+     * @throws \InvalidArgumentException
      *      If the file does not exist
      * @throws \Exception
      *      If the file handle resource cannot be established
@@ -30,11 +30,12 @@ class PostFile
     public function __construct($path)
     {
         if (!file_exists($path)) {
-            throw new \Exception("'" . $path . "' doesn't exists.");
+            throw new \InvalidArgumentException(
+                "'" . $path . "' doesn't exists."
+            );
         }
 
         $this->path = $path;
-
         $this->handle = fopen($path, 'r+');
 
         if (!$this->handle) {
@@ -49,7 +50,9 @@ class PostFile
      */
     public function __destruct()
     {
-        fclose($this->handle);
+        if (is_resource($this->handle)) {
+            fclose($this->handle);
+        }
     }
 
     /**
@@ -61,7 +64,22 @@ class PostFile
     public function read($buffer = 0)
     {
         $buffer = (!$buffer) ? filesize($this->path) : $buffer;
-
         return fread($this->handle, $buffer);
+    }
+
+    /**
+     * Just save the file path
+     */
+    public function serialize()
+    {
+        return serialize($this->path);
+    }
+
+    /**
+     * Fill out the file, open the file stream
+     */
+    public function unserialize($data)
+    {
+        $this->path = unserialize($data);
     }
 }
