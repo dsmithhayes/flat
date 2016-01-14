@@ -12,6 +12,8 @@ class PostList extends LinkedList
     /**
      * @param string
      *      The full path of the posts in the list
+     * @throws \Exception
+     *      If the path given isn't a directory
      */
     public function __construct($path)
     {
