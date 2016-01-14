@@ -4,7 +4,8 @@ namespace Flat;
 
 use Extended\LinkedList;
 use Flat\Post;
-use Flat\PostFile;
+use Flat\Files\PostFile;
+use cebe\markdown\Markdown;
 
 class PostList extends LinkedList
 {
@@ -15,11 +16,16 @@ class PostList extends LinkedList
     public function __construct($path)
     {
         if (!is_dir($path)) {
-            throw new \Exception("'" . $path "' is not a directory.");
+            throw new \Exception("'" . $path . "' is not a directory.");
         }
 
         foreach (scandir($path) as $file) {
-            $this->add(new Post($path . $file));
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+
+            $this->add(new Post(new PostFile($path . '/' . $file),
+                                new Markdown()));
         }
     }
 
