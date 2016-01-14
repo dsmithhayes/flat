@@ -31,7 +31,7 @@ class PostFile implements \Serializable
     {
         if (!file_exists($path)) {
             throw new \InvalidArgumentException(
-                "'" . $path . "' doesn't exists."
+                "'" . $path . "' does not exists."
             );
         }
 
@@ -68,7 +68,7 @@ class PostFile implements \Serializable
     }
 
     /**
-     * Just save the file path
+     * Serialize just the file path of the post
      */
     public function serialize()
     {
@@ -77,9 +77,17 @@ class PostFile implements \Serializable
 
     /**
      * Fill out the file, open the file stream
+     *
+     * @throws \Exception
+     *      If the file can't be opened
      */
     public function unserialize($data)
     {
         $this->path = unserialize($data);
+        $this->handle = fopen($this->path, 'r+');
+
+        if (!$this->handle) {
+            throw new \Exception("'" . $this->path . "' no longer exists.");
+        }
     }
 }
