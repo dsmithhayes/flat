@@ -3,9 +3,9 @@
     "description": "A flat file blogging system built with Slim3.",
     "type": "Application",
     "require": {
-        "slim/slim": "^3.1",
         "cebe/markdown": "^1.1",
-        "dsmithhayes/extended": "^0.4.0"
+        "dsmithhayes/extended": "^0.4.0",
+        "silex/silex": "^1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.1"
