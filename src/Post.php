@@ -21,12 +21,6 @@ class Post
     public $parser;
 
     /**
-     * @var bool
-     *      True if the post is to be published publically
-     */
-    private $published = true;
-
-    /**
      * @param \Flat\PostFile $postFile
      *      An instance of the PostFile object
      * @param \cebe\markdown\Parser $parser
@@ -34,10 +28,6 @@ class Post
      */
     public function __construct(PostFile $postFile, Parser $parser)
     {
-        if ($postFile instanceof DraftFile) {
-            $published = false;
-        }
-
         $this->postFile = $postFile;
         $this->parser = $parser;
     }
@@ -58,8 +48,7 @@ class Post
      * Parses inline markdown to HTML.
      *
      * @param string
-     *      A string of markdown to parse, uses the internal buffer by
-     *      default
+     *      A string of markdown to parse, uses the internal buffer by default
      * @return string
      *      The rendered HTML
      */
@@ -82,12 +71,22 @@ class Post
     }
 
     /**
+     * @return string
+     *      Return the title from the markdown file.
+     */
+    public function title()
+    {
+        $title = explode("\n", $this->raw())[0];
+        return $title;
+    }
+
+    /**
      * @return bool
      *      True if the post is a draft
      */
     public function isDraft()
     {
-        return $this->postFile::isDraft();
+        return $this->postFile->isDraft();
     }
 
     /**
@@ -96,6 +95,6 @@ class Post
      */
     public function isPublished()
     {
-        return !$this->postFile::isDraft();
+        return !$this->postFile->isDraft();
     }
 }

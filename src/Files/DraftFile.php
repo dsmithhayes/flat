@@ -4,6 +4,9 @@ namespace Flat\Files;
 
 use Flat\Files\PostFile;
 
+/**
+ * A draft is just a file with '.draft' as an extension.
+ */
 class DraftFile extends PostFile
 {
     /**
@@ -14,7 +17,7 @@ class DraftFile extends PostFile
      */
     public function __construct($path)
     {
-        if (!self::isDraft($path)) {
+        if (!$this->isDraft($path)) {
             throw new \InvalidArgumentException(
                 "'" . $path . "' is not a valid draft."
             );
@@ -29,8 +32,12 @@ class DraftFile extends PostFile
      * @return bool
      *      True if the post is a draft
      */
-    public static function isDraft($path = $this->path)
+    public function isDraft($path = null)
     {
-        return preg_match('/\.draft/', $path);
+        if (!$path) {
+            $path = $this->path;
+        }
+
+        return (bool) preg_match('/\.draft/', $path);
     }
 }

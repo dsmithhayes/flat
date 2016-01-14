@@ -95,7 +95,7 @@ class PostFile implements \Serializable
      * @return bool
      *      Always false, because its not a DraftFile object
      */
-    public static function isDraft()
+    public function isDraft()
     {
         return false;
     }

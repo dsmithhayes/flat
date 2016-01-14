@@ -11,6 +11,11 @@ $flat = new \Slim\Application();
  * Index entry point to the blog.
  */
 $flat->get("/", function (Request $req, Response $res) {
+    $postList = new PostList(__DIR__ . '/../md');
+
+    foreach ($postList as $pl) {
+        echo $pl->title();
+    }
 
     return $res;
 });

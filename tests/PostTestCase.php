@@ -37,4 +37,32 @@ class PostTestCase extends PHPUnit_Framework_TestCase
 
         return $post;
     }
+
+    /**
+     * @depends testPostIsDraft
+     */
+    public function testPostTitle($post)
+    {
+        $this->assertEquals('# Test Post!', $post->title());
+
+        return $post;
+    }
+
+    public function testDraftIsPublished()
+    {
+        $draft = new Post(new DraftFile($this->testDraft), new Markdown());
+        $this->assertFalse($draft->isPublished());
+
+        return $draft;
+    }
+
+    /**
+     * @depends testDraftIsPublished
+     */
+    public function testDraftIsDraft($draft)
+    {
+        $this->assertTrue($draft->isDraft());
+
+        return $draft;
+    }
 }
