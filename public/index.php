@@ -5,7 +5,7 @@ require_once '../vendor/autoload.php';
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$flat = new \Slim\Application();
+$flat = new \Slim\App();
 
 /**
  * Index entry point to the blog.
@@ -13,10 +13,11 @@ $flat = new \Slim\Application();
 $flat->get("/", function (Request $req, Response $res) {
     $postList = new PostList(__DIR__ . '/../md');
 
-    foreach ($postList as $pl) {
-        echo $pl->title();
+    foreach ($postList as $post) {
+        $body .= $post->title();
     }
 
+    $res->getBody()->write($body);
     return $res;
 });
 
@@ -36,3 +37,5 @@ $flat->get("/raw[/{title}]", function (Request $req, Response $res, $args) {
 
     return $res;
 });
+
+$flat->run();
