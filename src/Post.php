@@ -18,7 +18,7 @@ class Post
      * @var \cebe\markdown\Parser
      *      An instance of the markdown parser
      */
-    public $parser;
+    protected $parser;
 
     /**
      * @param \Flat\PostFile $postFile
@@ -72,12 +72,30 @@ class Post
 
     /**
      * @return string
-     *      Return the title from the markdown file.
+     *      Return the title from the markdown file
      */
     public function title()
     {
         $title = explode("\n", $this->raw())[0];
         return $title;
+    }
+
+    /**
+     * @return \Flat\Files\PostFile
+     *      The PostFile object
+     */
+    public function postFile()
+    {
+        return $this->postFile;
+    }
+
+    /**
+     * @return \cebe\markdown\Parser
+     *      And instance of the markdown parser used with the object
+     */
+    public function parser()
+    {
+        return $this->parser;
     }
 
     /**
