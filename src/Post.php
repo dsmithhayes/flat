@@ -46,7 +46,7 @@ class Post
      * This will effectively render all of the markdown in the file to its
      * appropriate HTML
      *
-     * @return string 
+     * @return string
      *      The rendered HTML of the PostFile content
      */
     public function html()
@@ -58,7 +58,7 @@ class Post
      * Parses inline markdown to HTML.
      *
      * @param string
-     *      A string of markdown to parse, uses the internal buffer by 
+     *      A string of markdown to parse, uses the internal buffer by
      *      default
      * @return string
      *      The rendered HTML
@@ -73,7 +73,7 @@ class Post
      * Some times all you want to look at is the raw markdown. So this method
      * will let you see it
      *
-     * @return string 
+     * @return string
      *      The raw markdown of the post
      */
     public function raw()
@@ -87,7 +87,7 @@ class Post
      */
     public function isDraft()
     {
-        return !$this->published;
+        return $this->postFile::isDraft();
     }
 
     /**
@@ -96,6 +96,6 @@ class Post
      */
     public function isPublished()
     {
-        return $this->published;
+        return !$this->postFile::isDraft();
     }
 }

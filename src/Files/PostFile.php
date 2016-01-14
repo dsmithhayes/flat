@@ -90,4 +90,13 @@ class PostFile implements \Serializable
             throw new \Exception("'" . $this->path . "' no longer exists.");
         }
     }
+
+    /**
+     * @return bool
+     *      Always false, because its not a DraftFile object
+     */
+    public static function isDraft()
+    {
+        return false;
+    }
 }

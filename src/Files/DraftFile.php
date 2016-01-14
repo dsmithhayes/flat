@@ -29,7 +29,7 @@ class DraftFile extends PostFile
      * @return bool
      *      True if the post is a draft
      */
-    public static function isDraft($path)
+    public static function isDraft($path = $this->path)
     {
         return preg_match('/\.draft/', $path);
     }
