@@ -14,7 +14,7 @@ $flat->get('/', function () {
     $postList = new PostList('../md');
 
     foreach ($postList as $post) {
-        $body .= $post->title() . "\n";
+        $body .= $post->title() . "<br />";
     }
 
     return $body;

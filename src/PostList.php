@@ -26,8 +26,10 @@ class PostList extends LinkedList
                 continue;
             }
 
-            $this->add(new Post(new PostFile($path . '/' . $file),
-                                new Markdown()));
+            $this->add(
+                new Post(
+                    new PostFile($path . '/' . $file),
+                    new Markdown()));
         }
     }
 
