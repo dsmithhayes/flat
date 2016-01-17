@@ -13,6 +13,8 @@ $flat = new \Silex\Application;
 $flat->get('/', function () {
     $postList = new PostList('../md');
 
+    $body = '';
+
     foreach ($postList as $post) {
         $body .= $post->title() . "<br />";
     }

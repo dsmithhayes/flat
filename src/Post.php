@@ -77,7 +77,7 @@ class Post
     public function title()
     {
         $title = explode("\n", $this->raw())[0];
-        return $title;
+        return preg_replace('/\#\s/', '', $title);
     }
 
     /**
