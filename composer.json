@@ -3,6 +3,7 @@
     "description": "A flat file blogging system built with Slim3.",
     "type": "Application",
     "require": {
+        "php": ">=7.0.0",
         "cebe/markdown": "^1.1",
         "dsmithhayes/extended": "^0.4.0",
         "silex/silex": "^1.3",

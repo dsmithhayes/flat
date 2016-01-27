@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Flat;
 
@@ -77,7 +77,8 @@ class Post
     public function title()
     {
         $title = explode("\n", $this->raw())[0];
-        return preg_replace('/\#\s/', '', $title);
+        $title = preg_replace('/\#/', '', $title);
+        return preg_replace('/^\s/', '', $title);
     }
 
     /**

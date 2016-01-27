@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Flat;
 
@@ -27,9 +27,8 @@ class PostList extends LinkedList
             }
 
             $this->add(
-                new Post(
-                    new PostFile($path . '/' . $file),
-                    new Markdown()));
+                new Post(new PostFile($path . '/' . $file),
+                         new Markdown()));
         }
     }
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Flat\Files;
 
@@ -32,7 +32,7 @@ class DraftFile extends PostFile
      * @return bool
      *      True if the post is a draft
      */
-    public function isDraft($path = null)
+    public function isDraft($path = null): bool
     {
         if (!$path) {
             $path = $this->path;
