@@ -22,13 +22,17 @@ class PostList extends LinkedList
         }
 
         foreach (scandir($path) as $file) {
+            // skip current and parent directories
             if ($file === '.' || $file === '..') {
                 continue;
             }
 
             $this->add(
-                new Post(new PostFile($path . '/' . $file),
-                         new Markdown()));
+                new Post(
+                    new PostFile($path . '/' . $file),
+                    new Markdown()
+                )
+            );
         }
     }
 

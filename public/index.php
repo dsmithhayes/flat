@@ -50,15 +50,11 @@ $flat->get('/{fileName}', function($fileName) {
     $filePath = '../md/' . $fileName . '.md';
 
     $post = new Post(
-        new PostFile($fileName),
+        new PostFile($filePath),
         new Parser()
     );
 
-    return json_encode([
-        'title' => $post->title(),
-        'raw' => $post->raw(),
-        'html' => $post->html()
-    ]);
+    return $post->html();
 });
 
 /**

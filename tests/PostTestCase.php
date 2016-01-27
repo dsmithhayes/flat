@@ -5,6 +5,13 @@ use Flat\Files\PostFile;
 use Flat\Files\DraftFile;
 use cebe\markdown\Markdown;
 
+/**
+ * Writing this test case I realized the PHPUnit serializes objects inbetween
+ * each method when it runs as its own process. Now that I'd typed it out, that
+ * makes a lot of sense to do. Unfortunately because the PostFile has a live
+ * and active file handle open while its instanciated, I had to bring the handle
+ * back to life after the object gets serialized.
+ */
 class PostTestCase extends PHPUnit_Framework_TestCase
 {
     protected $testFile = __DIR__ . '/../md/test.md';

@@ -58,13 +58,18 @@ class PostFile implements \Serializable
     /**
      * Reads and returns the contents of the file resource
      *
-     * @param int $buffer
+     * @param int $bufferSize
      *      The buffer size of the read action
      */
-    public function read($buffer = 0)
+    public function read($bufferSize = 0): string
     {
-        $buffer = (!$buffer) ? filesize($this->path) : $buffer;
-        return fread($this->handle, $buffer);
+        $bufferSize = (!$buffer) ? filesize($this->path) : $bufferSize;
+        $buffer = fread($this->handle, $bufferSize);
+
+        // Should I be error checking here? How often does `rewind()` fail?
+        rewind($this->handle);
+
+        return $buffer;
     }
 
     /**
