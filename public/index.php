@@ -10,14 +10,14 @@ use cebe\markdown\Markdown as Parser;
 
 $flat = new \Silex\Application;
 
+$flat['debug'] = true;
+
 /**
  * Register the twig templates service provider.
  */
 $flat->register(
     new \Silex\Provider\TwigServiceProvider(),
-    [
-        'twig.path' => __DIR__ . '../views'
-    ]
+    ['twig.path' => __DIR__ . '../views']
 );
 
 /**
@@ -47,13 +47,17 @@ $flat->get('/', function () {
  * Basic API entry point for the single post
  */
 $flat->get('/{fileName}', function($fileName) {
+    $filePath = '../md/' . $fileName . '.md';
+
     $post = new Post(
-        new PostFile('../md/'. $fileName . '.md'),
+        new PostFile($fileName),
         new Parser()
     );
 
     return json_encode([
-        'title' => $post->title()
+        'title' => $post->title(),
+        'raw' => $post->raw(),
+        'html' => $post->html()
     ]);
 });
 
