@@ -33,13 +33,21 @@ class PostList extends LinkedList
     }
 
     /**
-     * Overrides the parent method by enforcing a type on the parameter
+     * Overrides the parent method by enforcing a type on the parameter,
+     * making a type-safe list
      *
      * @param \Flat\Post
      *      An instance of the Post object
+     * @return bool
+     *      True if the Post object was added to the list
      */
-    public function add(Post $post)
+    public function add($post)
     {
-        parent::add($post);
+        if ($post instanceof \Flat\Post) {
+            parent::add($post);
+            return true;
+        }
+
+        return false;
     }
 }

@@ -92,10 +92,19 @@ class PostFile implements \Serializable
     }
 
     /**
+     * @return string
+     *      The basename of the file path, representing the slug
+     */
+    public function fileName(): string
+    {
+        return basename($this->path);
+    }
+
+    /**
      * @return bool
      *      Always false, because its not a DraftFile object
      */
-    public function isDraft()
+    public function isDraft(): bool
     {
         return false;
     }

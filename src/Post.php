@@ -39,7 +39,7 @@ class Post
      * @return string
      *      The rendered HTML of the PostFile content
      */
-    public function html()
+    public function html(): string
     {
         return $this->parser->parse($this->raw());
     }
@@ -52,7 +52,7 @@ class Post
      * @return string
      *      The rendered HTML
      */
-    public function inline($string = null)
+    public function inline($string = null): string
     {
         $string = (!$string) ? $this->raw() : $string;
         return $this->parse->parseParagraph($string);
@@ -65,7 +65,7 @@ class Post
      * @return string
      *      The raw markdown of the post
      */
-    public function raw()
+    public function raw(): string
     {
         return $this->postFile->read();
     }
@@ -74,7 +74,7 @@ class Post
      * @return string
      *      Return the title from the markdown file
      */
-    public function title()
+    public function title(): string
     {
         $title = explode("\n", $this->raw())[0];
         $title = preg_replace('/\#/', '', $title);
@@ -85,7 +85,7 @@ class Post
      * @return \Flat\Files\PostFile
      *      The PostFile object
      */
-    public function postFile()
+    public function postFile(): \Flat\Files\PostFile
     {
         return $this->postFile;
     }
@@ -94,7 +94,7 @@ class Post
      * @return \cebe\markdown\Parser
      *      And instance of the markdown parser used with the object
      */
-    public function parser()
+    public function parser(): \cebe\markdown\parser
     {
         return $this->parser;
     }
@@ -103,7 +103,7 @@ class Post
      * @return bool
      *      True if the post is a draft
      */
-    public function isDraft()
+    public function isDraft(): bool
     {
         return $this->postFile->isDraft();
     }
@@ -112,7 +112,7 @@ class Post
      * @return bool
      *      True if the post is to be published
      */
-    public function isPublished()
+    public function isPublished(): bool
     {
         return !$this->postFile->isDraft();
     }
