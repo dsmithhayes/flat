@@ -30,9 +30,7 @@ class PostList extends LinkedList
             $this->add(
                 new Post(
                     new PostFile($path . '/' . $file),
-                    new Markdown()
-                )
-            );
+                    new Markdown()));
         }
     }
 
@@ -45,13 +43,9 @@ class PostList extends LinkedList
      * @return bool
      *      True if the Post object was added to the list
      */
-    public function add($post)
+    public function add(Post $post)
     {
-        if ($post instanceof \Flat\Post) {
-            parent::add($post);
-            return true;
-        }
-
-        return false;
+        parent::add($post);
+        return true;
     }
 }

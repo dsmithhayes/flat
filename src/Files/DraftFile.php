@@ -1,5 +1,9 @@
 <?php declare(strict_types = 1);
 
+/**
+ * @author Dave Smith-Hayes
+ */
+
 namespace Flat\Files;
 
 use Flat\Files\PostFile;

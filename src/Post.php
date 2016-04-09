@@ -1,5 +1,9 @@
 <?php declare(strict_types = 1);
 
+/**
+ * @author Dave Smith-Hayes
+ */
+
 namespace Flat;
 
 use cebe\markdown\Parser;
@@ -77,8 +81,8 @@ class Post
     public function title(): string
     {
         $title = explode("\n", $this->raw())[0];
-        $title = preg_replace('/\#/', '', $title);
-        return preg_replace('/^\s/', '', $title);
+        $title = preg_replace('/^\#\s/', '', $title);
+        return $title; //preg_replace('/^\s/', '', $title);
     }
 
     /**

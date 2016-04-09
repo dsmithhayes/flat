@@ -1,5 +1,9 @@
 <?php declare(strict_types = 1);
 
+/**
+ * @author Dave Smith-Hayes
+ */
+
 namespace Flat\Files;
 
 /**
@@ -63,7 +67,7 @@ class PostFile implements \Serializable
      */
     public function read($bufferSize = 0): string
     {
-        $bufferSize = (!$buffer) ? filesize($this->path) : $bufferSize;
+        $bufferSize = (!$bufferSize) ? filesize($this->path) : $bufferSize;
         $buffer = fread($this->handle, $bufferSize);
 
         // Should I be error checking here? How often does `rewind()` fail?

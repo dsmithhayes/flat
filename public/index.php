@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Dave Smith-Hayes
+ */
+
 require_once '../vendor/autoload.php';
 
 use Flat\PostList;
